@@ -241,7 +241,8 @@ abstract class MarkdownWidget extends StatefulWidget {
 
   /// The styles to use when displaying the Markdown.
   ///
-  /// If null, the styles are inferred from the current [Theme].
+  /// If null, it uses the value of the ThemeExtension if set
+  /// else the styles are inferred from the current [Theme].
   final MarkdownStyleSheet? styleSheet;
 
   /// Setting to specify base theme for MarkdownStyleSheet
@@ -365,10 +366,13 @@ class _MarkdownWidgetState extends State<MarkdownWidget>
   }
 
   void _parseMarkdown() {
+    final MarkdownStyleSheet? theme =
+        Theme.of(context).extension<MarkdownStyleSheet>();
     final MarkdownStyleSheet fallbackStyleSheet =
         kFallbackStyle(context, widget.styleSheetTheme);
+    final MarkdownStyleSheet fallbackAndTheme = fallbackStyleSheet.merge(theme);
     final MarkdownStyleSheet styleSheet =
-        fallbackStyleSheet.merge(widget.styleSheet);
+        fallbackAndTheme.merge(widget.styleSheet);
 
     _disposeRecognizers();
 

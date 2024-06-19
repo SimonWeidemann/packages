@@ -2,11 +2,13 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Defines which [TextStyle] objects to use for which Markdown elements.
-class MarkdownStyleSheet {
+class MarkdownStyleSheet extends ThemeExtension<MarkdownStyleSheet> {
   /// Creates an explicit mapping of [TextStyle] objects to Markdown elements.
   MarkdownStyleSheet({
     this.a,
@@ -341,6 +343,7 @@ class MarkdownStyleSheet {
 
   /// Creates a [MarkdownStyleSheet] based on the current style, with the
   /// provided parameters overridden.
+  @override
   MarkdownStyleSheet copyWith({
     TextStyle? a,
     TextStyle? p,
@@ -823,5 +826,106 @@ class MarkdownStyleSheet {
       textScaleFactor,
       superscriptFontFeatureTag,
     ]);
+  }
+
+  @override
+  MarkdownStyleSheet lerp(
+    covariant ThemeExtension<MarkdownStyleSheet>? other,
+    double t,
+  ) {
+    final MarkdownStyleSheet sheet;
+
+    if (other is! MarkdownStyleSheet) {
+      sheet = this;
+    } else {
+      sheet = MarkdownStyleSheet(
+        a: TextStyle.lerp(a, other.a, t),
+        p: TextStyle.lerp(p, other.p, t),
+        pPadding: EdgeInsets.lerp(pPadding, other.pPadding, t),
+        code: TextStyle.lerp(code, other.code, t),
+        h1: TextStyle.lerp(h1, other.h1, t),
+        h1Padding: EdgeInsets.lerp(h1Padding, other.h1Padding, t),
+        h2: TextStyle.lerp(h2, other.h2, t),
+        h2Padding: EdgeInsets.lerp(h2Padding, other.h2Padding, t),
+        h3: TextStyle.lerp(h3, other.h3, t),
+        h3Padding: EdgeInsets.lerp(h3Padding, other.h3Padding, t),
+        h4: TextStyle.lerp(h4, other.h4, t),
+        h4Padding: EdgeInsets.lerp(h4Padding, other.h4Padding, t),
+        h5: TextStyle.lerp(h5, other.h5, t),
+        h5Padding: EdgeInsets.lerp(h5Padding, other.h5Padding, t),
+        h6: TextStyle.lerp(h6, other.h6, t),
+        h6Padding: EdgeInsets.lerp(h6Padding, other.h6Padding, t),
+        em: TextStyle.lerp(em, other.em, t),
+        strong: TextStyle.lerp(strong, other.strong, t),
+        del: TextStyle.lerp(del, other.del, t),
+        blockquote: TextStyle.lerp(blockquote, other.blockquote, t),
+        img: TextStyle.lerp(img, other.img, t),
+        checkbox: TextStyle.lerp(checkbox, other.checkbox, t),
+        blockSpacing: lerpDouble(blockSpacing, other.blockSpacing, t),
+        listIndent: lerpDouble(listIndent, other.listIndent, t),
+        listBullet: TextStyle.lerp(listBullet, other.listBullet, t),
+        listBulletPadding: EdgeInsets.lerp(
+          listBulletPadding,
+          other.listBulletPadding,
+          t,
+        ),
+        tableHead: TextStyle.lerp(tableHead, other.tableHead, t),
+        tableBody: TextStyle.lerp(tableBody, other.tableBody, t),
+        tableHeadAlign: other.tableHeadAlign,
+        tableBorder: TableBorder.lerp(tableBorder, other.tableBorder, t),
+        tableColumnWidth: other.tableColumnWidth,
+        tableCellsPadding: EdgeInsets.lerp(
+          tableCellsPadding,
+          other.tableCellsPadding,
+          t,
+        ),
+        tableCellsDecoration: Decoration.lerp(
+          tableCellsDecoration,
+          other.tableCellsDecoration,
+          t,
+        ),
+        tableVerticalAlignment: other.tableVerticalAlignment,
+        blockquotePadding: EdgeInsets.lerp(
+          blockquotePadding,
+          other.blockquotePadding,
+          t,
+        ),
+        blockquoteDecoration: Decoration.lerp(
+          blockquoteDecoration,
+          other.blockquoteDecoration,
+          t,
+        ),
+        codeblockPadding: EdgeInsets.lerp(
+          codeblockPadding,
+          other.codeblockPadding,
+          t,
+        ),
+        codeblockDecoration: Decoration.lerp(
+          codeblockDecoration,
+          other.codeblockDecoration,
+          t,
+        ),
+        horizontalRuleDecoration: Decoration.lerp(
+          horizontalRuleDecoration,
+          other.horizontalRuleDecoration,
+          t,
+        ),
+        textAlign: other.textAlign,
+        h1Align: other.h1Align,
+        h2Align: other.h2Align,
+        h3Align: other.h3Align,
+        h4Align: other.h4Align,
+        h5Align: other.h5Align,
+        h6Align: other.h6Align,
+        unorderedListAlign: other.unorderedListAlign,
+        orderedListAlign: other.orderedListAlign,
+        blockquoteAlign: other.blockquoteAlign,
+        codeblockAlign: other.codeblockAlign,
+        textScaler: other.textScaler,
+        textScaleFactor: other.textScaleFactor,
+        superscriptFontFeatureTag: other.superscriptFontFeatureTag,
+      );
+    }
+    return sheet;
   }
 }

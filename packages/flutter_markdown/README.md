@@ -157,6 +157,27 @@ valuable resources are the
 [Markdown Live Preview](https://markdownlivepreview.com/). These two resources
 are dynamic, online Markdown viewers.
 
+## Markdown Theme Extension
+The MarkdownStyleSheet inherits from ThemeExtension<MarkdownStyleSheet>,
+which means it can be easily added to the extensions in a Material app's theme.
+These values will then be used in all Markdown widgets.
+You can override values as usual in the widget itself.
+
+```dart
+import 'package:markdown/markdown.dart' as md;
+
+MaterialApp(
+      title: 'Markdown Themed',
+      theme: ThemeData(
+      extensions: <ThemeExtension<dynamic>>[
+          MarkdownStyleSheet(a: const TextStyle(color: Colors.red))
+       ],
+      ),
+      home: HomeScreen(),
+);
+```
+
+
 ## Markdown Resources
 
 Here are some additional Markdown syntax resources:

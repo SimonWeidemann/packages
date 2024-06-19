@@ -57,6 +57,8 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+
 import 'screens/demo_screen.dart';
 import 'screens/home_screen.dart';
 import 'shared/markdown_demo_widget.dart';
@@ -66,6 +68,11 @@ void main() {
     MaterialApp(
       title: 'Markdown Demos',
       initialRoute: '/',
+      theme: ThemeData(
+        extensions: <ThemeExtension<dynamic>>[
+          MarkdownStyleSheet(a: const TextStyle(color: Colors.orange))
+        ],
+      ),
       home: HomeScreen(),
       onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute<void>(

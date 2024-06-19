@@ -1,3 +1,8 @@
+## 0.7.3
+* MarkdownStyleSheet now inherits from ThemeExtension<MarkdownStyleSheet>.
+  * It can be added to the extensions in a Material App.
+  * When declared in the Material extensions, it will be used as the default.
+
 ## 0.7.2+1
 
 * Fixes a crash caused by text selection when `selectable` is true and `onSelectionChanged` is null.
